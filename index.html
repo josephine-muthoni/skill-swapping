@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Skill-Swap Marketplace</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <nav class="Navbar>
+        <div class=" nav-left">
+            <a href="#how-it-works">How It Works</a>
+            <a href="#features">Features</a>
+            <a href="#browse-skill">Browse Skills</a>
+
+            </div>
+            <div class="nav-right">
+                <a href="#sign-up">Sign Up</a>
+                <a href="#login">Login</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Exchange Skills. Learn Freely. Connect Globally.</h1>
+            <p>Join a global community where passion meets purpose — no money needed.</p>
+            <a href="#signup" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">1. Create Your Skill Profile</div>
+            <div class="step">2. Match With Global Learners</div>
+            <div class="step">3. Exchange Lessons Live</div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <h2>Platform Features</h2>
+        <ul>
+            <li>Smart Matchmaking</li>
+            <li>Built-in Video Lessons</li>
+            <li>Skill Tokens for Fair Exchanges</li>
+            <li>Global Availability & Language Filters</li>
+            <li>Progress Tracking</li>
+            <li>Community Feedback System</li>
+        </ul>
+    </section>
+
+    <!-- Browse Skills Section -->
+    <section id="browse-skills">
+        <h2>Browse Popular Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Guitar</h3>
+                <p>Offered by users in Brazil, Spain, USA</p>
+            </div>
+            <div class="skill-card">
+                <h3>Web Development</h3>
+                <p>Offered by users in India, Germany, Canada</p>
+            </div>
+            <div class="skill-card">
+                <h3>Spanish</h3>
+                <p>Offered by native speakers worldwide</p>
+            </div>
+            <div class="skill-card">
+                <h3>Photography</h3>
+                <p>Offered by professionals and enthusiasts</p>
+            </div>
+            <div class="skill-card">
+                <h3>Cooking</h3>
+                <p>Learn authentic cuisines from different cultures</p>
+            </div>
+            <div class="skill-card">
+                <h3>Yoga</h3>
+                <p>From beginners to advanced practitioners</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signup Section -->
+    <section id="signup" class="auth-section">
+        <div class="auth-container">
+            <div class="auth-image">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                    alt="People learning together">
+            </div>
+            <div class="auth-form">
+                <h2>Create Your Account</h2>
+                <p>Start your skill-swapping journey today</p>
+                <form id="signup-form">
+                    <div class="form-group">
+                        <input type="text" id="signup-name" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="signup-email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="signup-password" placeholder="Create Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="signup-skills" placeholder="Skills you can offer (comma separated)">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="signup-interests" placeholder="Skills you want to learn">
+                    </div>
+                    <button type="submit" class="cta-button">Sign Up</button>
+                    <p class="auth-alt">Already have an account? <a href="#login">Log in</a></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Section -->
+    <section id="login" class="auth-section">
+        <div class="auth-container">
+            <div class="auth-form">
+                <h2>Welcome Back</h2>
+                <p>Continue your skill-swapping journey</p>
+                <form id="login-form">
+                    <div class="form-group">
+                        <input type="email" id="login-email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="login-password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group remember">
+                        <input type="checkbox" id="remember-me">
+                        <label for="remember-me">Remember me</label>
+                        <a href="#forgot-password" class="forgot-password">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="cta-button">Log In</button>
+                    <p class="auth-alt">Don't have an account? <a href="#signup">Sign up</a></p>
+                </form>
+            </div>
+            <div class="auth-image">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                    alt="Happy community">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 SkillSwap. All rights reserved.</p>
+        <ul>
+            <li><a href="#how-it-works">How-It-Works</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#browse-skills">Browse Skills</a></li>
+            <li><a href="#sign-up">Sign Up</a></li>
+            <li><a href="#login">Login</a></li>
+        </ul>
+    </footer>
+
+</body>
+
+</html>
