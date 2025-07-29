@@ -149,9 +149,16 @@
             <button class="filter-btn" data-category="business">Business</button>
         </div>
 
+        <!-- Add Level Filter Buttons Here -->
+        <div class="level-filter">
+            <button class="level-filter-btn" data-level="beginner">Beginner</button>
+            <button class="level-filter-btn" data-level="intermediate">Intermediate</button>
+            <button class="level-filter-btn" data-level="advanced">Advanced</button>
+        </div>
+
         <div class="skills-grid">
             <!-- Technology Skills -->
-            <div class="skill-card hover-grow" data-category="tech">
+            <div class="skill-card hover-grow" data-category="tech" data-level="beginner intermediate">
                 <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
                 <h3>Web Development</h3>
                 <div class="skill-subcategories">
@@ -167,24 +174,13 @@
                     <span title="South Africa">🇿🇦</span>
                     <span title="United States">🇺🇸</span>
                 </div>
-                <div class="skill-card hover-grow" data-category="tech" data-level="beginner intermediate">
-                    <!-- existing content -->
-                    <div class="skill-level">
-                        <span class="level-beginner">Beginner</span>
-                        <span class="level-intermediate">Intermediate</span>
-                    </div>
-                </div>
-
-                <div class="skill-card hover-grow" data-category="tech" data-level="intermediate advanced">
-                    <!-- existing content -->
-                    <div class="skill-level">
-                        <span class="level-intermediate">Intermediate</span>
-                        <span class="level-advanced">Advanced</span>
-                    </div>
+                <div class="skill-level">
+                    <span class="level-beginner">Beginner</span>
+                    <span class="level-intermediate">Intermediate</span>
                 </div>
             </div>
 
-            <div class="skill-card hover-grow" data-category="tech">
+            <div class="skill-card hover-grow" data-category="tech" data-level="intermediate advanced">
                 <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
                 <h3>Mobile App Development</h3>
                 <div class="skill-subcategories">
@@ -205,7 +201,7 @@
             </div>
 
             <!-- Language Skills -->
-            <div class="skill-card hover-grow" data-category="language">
+            <div class="skill-card hover-grow" data-category="language" data-level="beginner intermediate">
                 <div class="skill-icon"><i class="fas fa-language"></i></div>
                 <h3>Swahili</h3>
                 <div class="skill-subcategories">
@@ -226,7 +222,7 @@
             </div>
 
             <!-- Creative Arts -->
-            <div class="skill-card hover-grow" data-category="creative">
+            <div class="skill-card hover-grow" data-category="creative" data-level="beginner intermediate">
                 <div class="skill-icon"><i class="fas fa-music"></i></div>
                 <h3>African Drumming</h3>
                 <div class="skill-subcategories">
@@ -246,7 +242,7 @@
             </div>
 
             <!-- Business Skills -->
-            <div class="skill-card hover-grow" data-category="business">
+            <div class="skill-card hover-grow" data-category="business" data-level="beginner intermediate">
                 <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
                 <h3>Entrepreneurship</h3>
                 <div class="skill-subcategories">
@@ -395,11 +391,11 @@
             <div class="footer-section">
                 <h3>SkillSwap</h3>
                 <p>Connecting learners worldwide through skill exchange</p>
-                <div class="social-icons">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <div class="contact-socials">
+                    <a href="https://linkedin.com/" target="_blank"><img src="images/li.jpeg" alt="LinkedIn"></a>
+                    <a href="https://facebook.com/" target="_blank"><img src="images/fb.png" alt="Facebook"></a>
+                    <a href="https://instagram.com/" target="_blank"><img src="images/ig.jpeg" alt="Instagram"></a>
+                    <a href="https://wa.me/" target="_blank"><img src="images/http.png" alt="WhatsApp"></a>
                 </div>
             </div>
             <div class="footer-section">
@@ -433,37 +429,7 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        // World clock functionality
-        function updateClocks() {
-            document.querySelectorAll('.clock').forEach(clock => {
-                const options = {
-                    timeZone: clock.dataset.timezone,
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: true
-                };
-                clock.querySelector('.time').textContent =
-                    new Date().toLocaleTimeString('en-US', options);
-            });
-        }
-
-        setInterval(updateClocks, 1000);
-        updateClocks();
-
-        // Skill filtering functionality
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-
-                const category = this.dataset.category;
-                document.querySelectorAll('.skill-card').forEach(card => {
-                    card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
-                });
-            });
-        });
-    </script>
+    
 </body>
 
 </html>

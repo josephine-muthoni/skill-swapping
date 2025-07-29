@@ -1,246 +1,218 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Mobile menu toggle
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Navigation Toggle
     const hamburger = document.getElementById('hamburger');
     const navLeft = document.querySelector('.nav-left');
     const navRight = document.querySelector('.nav-right');
-    const body = document.body;
-
-    hamburger.addEventListener('click', function () {
+    
+    hamburger.addEventListener('click', function() {
         this.classList.toggle('active');
         navLeft.classList.toggle('active');
         navRight.classList.toggle('active');
-        body.classList.toggle('no-scroll');
     });
-
-    // Close mobile menu when clicking on a nav link
-    document.querySelectorAll('.nav-left a, .nav-right a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (hamburger.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                navLeft.classList.remove('active');
-                navRight.classList.remove('active');
-                body.classList.remove('no-scroll');
-            }
-        });
-    });
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-
-                // Close mobile menu if open
-                if (hamburger.classList.contains('active')) {
-                    hamburger.classList.remove('active');
-                    navLeft.classList.remove('active');
-                    navRight.classList.remove('active');
-                    body.classList.remove('no-scroll');
-                }
-            }
-        });
-    });
-
-    // Responsive form handling for signup and login
-    const signupForm = document.getElementById('signup-form');
-    const loginForm = document.getElementById('login-form');
-
-    if (signupForm) {
-        signupForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            handleFormSubmission(this, 'signup');
+    
+    // Update World Clocks
+    function updateClocks() {
+        const clocks = document.querySelectorAll('.clock');
+        
+        clocks.forEach(clock => {
+            const timezone = clock.getAttribute('data-timezone');
+            const timeElement = clock.querySelector('.time');
+            
+            const options = {
+                timeZone: timezone,
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            };
+            
+            const timeString = new Date().toLocaleTimeString('en-US', options);
+            timeElement.textContent = timeString;
         });
     }
+    
+    // Update clocks immediately and then every minute
+    updateClocks();
+    setInterval(updateClocks, 60000);
+    
+    // Enhanced Skill Filtering
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const levelFilterButtons = document.querySelectorAll('.level-filter-btn');
+    const skillCards = document.querySelectorAll('.skill-card');
 
-    if (loginForm) {
-        loginForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            handleFormSubmission(this, 'login');
-        });
-    }
-
-    // Form validation and submission handler
-    function handleFormSubmission(form, type) {
-        const formData = new FormData(form);
-        const data = {};
-        let isValid = true;
-
-        // Validate required fields
-        form.querySelectorAll('[required]').forEach(field => {
-            if (!field.value.trim()) {
-                field.classList.add('error');
-                isValid = false;
-            } else {
-                field.classList.remove('error');
-            }
-        });
-
-        // Additional validation for password length in signup
-        if (type === 'signup') {
-            const password = form.querySelector('#signup-password');
-            if (password && password.value.length < 8) {
-                password.classList.add('error');
-                isValid = false;
-                showToast('Password must be at least 8 characters long', 'error');
-            }
-        }
-
-        if (!isValid) {
-            showToast('Please fill in all required fields', 'error');
-            return;
-        }
-
-        // Process form data
-        formData.forEach((value, key) => {
-            data[key] = value;
-        });
-
-        // Simulate form submission (replace with actual AJAX call)
-        console.log(`${type} form data:`, data);
-        showToast(`${type === 'signup' ? 'Registration' : 'Login'} successful!`, 'success');
-
-        // Reset form after submission
-        if (type === 'signup') {
-            form.reset();
-            // Optional: Redirect to login or dashboard
-            // setTimeout(() => window.location.href = '#login', 1500);
-        }
-    }
-
-    // Show toast notifications
-    function showToast(message, type) {
-        const toast = document.createElement('div');
-        toast.className = `toast ${type}`;
-        toast.textContent = message;
-        document.body.appendChild(toast);
-
-        setTimeout(() => {
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => {
-                    toast.remove();
-                }, 300);
-            }, 3000);
-        }, 100);
-    }
-
-    // Responsive adjustments for auth sections
-    function handleAuthSectionsResponsiveness() {
-        const authContainers = document.querySelectorAll('.auth-container');
-        const windowWidth = window.innerWidth;
-
-        authContainers.forEach(container => {
-            if (windowWidth <= 992) {
-                container.classList.add('stacked');
-            } else {
-                container.classList.remove('stacked');
-            }
-        });
-    }
-
-    // Initial check and event listener for window resize
-    handleAuthSectionsResponsiveness();
-    window.addEventListener('resize', handleAuthSectionsResponsiveness);
-});
-
-// World clock functionality
-function updateClocks() {
-    document.querySelectorAll('.clock').forEach(clock => {
-        const options = {
-            timeZone: clock.dataset.timezone,
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true
-        };
-        clock.querySelector('.time').textContent =
-            new Date().toLocaleTimeString('en-US', options);
-    });
-}
-
-setInterval(updateClocks, 1000);
-updateClocks();
-
-// Timezone dropdown population
-const timezones = [
-    'America/New_York', 'America/Chicago', 'America/Denver', 'America/Los_Angeles',
-    'Europe/London', 'Europe/Paris', 'Europe/Berlin', 'Asia/Tokyo', 'Asia/Shanghai',
-    'Asia/Kolkata', 'Australia/Sydney', 'Pacific/Auckland'
-];
-
-const timezoneSelect = document.getElementById('signup-timezone');
-if (timezoneSelect) {
-    timezones.forEach(tz => {
-        const option = document.createElement('option');
-        option.value = tz;
-        option.textContent = tz.split('/')[1].replace('_', ' ');
-        timezoneSelect.appendChild(option);
-    });
-}
-document.addEventListener('DOMContentLoaded', function() {
-    const levelButtons = document.querySelectorAll('.skill-level span');
-    const categoryButtons = document.querySelectorAll('.filter-btn');
-    let activeLevel = null;
-    let activeCategory = 'all';
-
-    // Level filtering
-    levelButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const level = this.classList.contains('level-beginner') ? 'beginner' :
-                          this.classList.contains('level-intermediate') ? 'intermediate' :
-                          'advanced';
-
-            if (activeLevel === level) {
-                this.classList.remove('active');
-                activeLevel = null;
-            } else {
-                levelButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                activeLevel = level;
-            }
-            filterSkills();
-        });
-    });
-
-    // Category filtering (existing code modified)
-    categoryButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            categoryButtons.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            activeCategory = this.dataset.category;
-            filterSkills();
-        });
-    });
-
-    // Combined filtering function
     function filterSkills() {
-        const skillCards = document.querySelectorAll('.skill-card');
+        // Get active category
+        const activeCategory = document.querySelector('.filter-btn.active').dataset.category;
+        
+        // Get active level (if any)
+        const activeLevelBtn = document.querySelector('.level-filter-btn.active');
+        const activeLevel = activeLevelBtn ? activeLevelBtn.dataset.level : null;
         
         skillCards.forEach(card => {
-            const cardCategory = card.dataset.category;
-            const cardLevels = card.dataset.level.split(' ');
+            // Check category match
+            const categoryMatch = activeCategory === 'all' || 
+                                card.dataset.category === activeCategory;
             
-            // Check category
-            const categoryMatch = activeCategory === 'all' || cardCategory === activeCategory;
+            // Check level match if a level is selected
+            let levelMatch = true;
+            if (activeLevel) {
+                const cardLevels = card.dataset.level.split(' ');
+                levelMatch = cardLevels.includes(activeLevel);
+            }
             
-            // Check level
-            const levelMatch = !activeLevel || cardLevels.includes(activeLevel);
-            
-            // Show/hide based on both filters
+            // Show or hide card based on matches
             if (categoryMatch && levelMatch) {
                 card.style.display = 'block';
             } else {
                 card.style.display = 'none';
             }
         });
+    }
+
+    // Initialize filter buttons
+    if (filterButtons.length > 0) {
+        // Category filter buttons
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                filterSkills();
+            });
+        });
+
+        // Level filter buttons
+        levelFilterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Toggle active state (allow clicking again to deselect)
+                if (this.classList.contains('active')) {
+                    this.classList.remove('active');
+                } else {
+                    levelFilterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                }
+                filterSkills();
+            });
+        });
+    }
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = targetElement.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (hamburger.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    navLeft.classList.remove('active');
+                    navRight.classList.remove('active');
+                }
+            }
+        });
+    });
+    
+    // Form validation and submission
+    const signupForm = document.getElementById('signup-form');
+    if (signupForm) {
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const name = document.getElementById('signup-name').value.trim();
+            const email = document.getElementById('signup-email').value.trim();
+            const password = document.getElementById('signup-password').value;
+            const timezone = document.getElementById('signup-timezone').value;
+            
+            if (!name || !email || !password || !timezone) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Simulate form submission
+            console.log('Signup form submitted:', { name, email, password, timezone });
+            alert('Thank you for signing up! Redirecting to your dashboard...');
+            // In a real app, you would redirect or show a success message
+        });
+    }
+    
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+            
+            if (!email || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Simulate form submission
+            console.log('Login form submitted:', { email, password });
+            alert('Login successful! Redirecting to your dashboard...');
+            // In a real app, you would redirect or show a success message
+        });
+    }
+    
+    // Animate elements when they come into view
+    const animateOnScroll = function() {
+        const elements = document.querySelectorAll('.animated-step, .feature-card, .skill-card');
+        
+        elements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.2;
+            
+            if (elementPosition < screenPosition) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    };
+    
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Run once on page load
+    
+    // Language selector functionality
+    const languageSelect = document.getElementById('language-select');
+    if (languageSelect) {
+        languageSelect.addEventListener('change', function() {
+            // In a real app, this would change the language of the page
+            console.log('Language changed to:', this.value);
+            alert('Language changed to ' + this.options[this.selectedIndex].text);
+        });
+    }
+    
+    // Testimonial carousel auto-scroll
+    const testimonialCarousel = document.querySelector('.testimonial-carousel');
+    if (testimonialCarousel) {
+        let scrollAmount = 0;
+        const scrollWidth = testimonialCarousel.scrollWidth - testimonialCarousel.clientWidth;
+        
+        function autoScrollTestimonials() {
+            scrollAmount += 300;
+            if (scrollAmount > scrollWidth) {
+                scrollAmount = 0;
+            }
+            testimonialCarousel.scrollTo({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Auto-scroll every 5 seconds
+        setInterval(autoScrollTestimonials, 5000);
     }
 });
