@@ -85,9 +85,11 @@ img {
     0% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.05);
     }
+
     100% {
         transform: scale(1);
     }
@@ -118,7 +120,8 @@ header {
     padding: 15px 0;
 }
 
-.nav-left, .nav-right {
+.nav-left,
+.nav-right {
     display: flex;
     align-items: center;
     gap: 25px;
@@ -155,17 +158,87 @@ header {
 
 .hamburger {
     display: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #fff;
+    border: none;
+    padding: 10px;
     cursor: pointer;
-    flex-direction: column;
-    gap: 5px;
 }
 
 .hamburger span {
     display: block;
-    width: 25px;
+    width: 30px;
     height: 3px;
-    background-color: var(--dark-color);
+    background-color: #333;
+    margin-bottom: 5px;
     transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 20px;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
+}
+
+.menu.active {
+    transform: translateX(0);
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    margin-bottom: 10px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+}
+@media (max-width: 768px) {
+    .nav-left,
+    .nav-right {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+    }
+
+    /* .menu {
+        width: 250px;
+        right: -250px;
+    }
+
+    .menu.active {
+        right: 0;
+    } */
 }
 
 /* Hero Section */
@@ -737,45 +810,48 @@ footer {
     .auth-container {
         flex-direction: column;
     }
-    
-    .auth-image, .auth-form {
+
+    .auth-image,
+    .auth-form {
         flex: none;
         width: 100%;
         max-width: 600px;
     }
-    
+
     .auth-image {
         order: -1;
     }
 }
 
 @media (max-width: 768px) {
-    .nav-left, .nav-right {
+
+    .nav-left,
+    .nav-right {
         display: none;
     }
-    
+
     .hamburger {
         display: flex;
     }
-    
+
     .hero-content h1 {
         font-size: 2rem;
     }
-    
+
     .steps-container {
         flex-direction: column;
     }
-    
+
     .step {
         max-width: 100%;
     }
-    
+
     .connector {
         display: block;
         transform: rotate(90deg);
         margin: 20px 0;
     }
-    
+
     .world-clock {
         flex-direction: column;
         gap: 10px;
@@ -786,32 +862,33 @@ footer {
     .hero {
         padding: 120px 0 80px;
     }
-    
+
     .hero-content h1 {
         font-size: 1.8rem;
     }
-    
+
     .cta-button {
         padding: 10px 25px;
     }
-    
+
     .category-filter {
         gap: 10px;
     }
-    
+
     .filter-btn {
         padding: 6px 15px;
         font-size: 0.9rem;
     }
-    
+
     .skills-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .testimonial {
         min-width: 250px;
     }
 }
+
 /* Add to your existing CSS */
 .level-filter {
     display: flex;
