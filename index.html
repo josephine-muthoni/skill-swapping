@@ -15,21 +15,21 @@
     <header>
         <nav class="navbar">
             <div class="nav-left">
-                <a href="#how-it-works">How It Works</a>
-                <a href="#features">Features</a>
-                <a href="#browse-skills">Browse Skills</a>
+                <a href="#how-it-works" data-i18n="how-it-works">How It Works</a>
+                <a href="#features" data-i18n="features">Features</a>
+                <a href="#browse-skills" data-i18n="browse-skills">Browse Skills</a>
             </div>
             <div class="nav-right">
-                <a href="#signup" class="signup-btn">Sign Up</a>
-                <a href="#login">Login</a>
+                <a href="#signup" class="signup-btn" data-i18n="signup">Sign Up</a>
+                <a href="#login" data-i18n="login">Login</a>
                 <div class="language-selector">
                     <i class="fas fa-globe"></i>
                     <select id="language-select">
                         <option value="en">English</option>
+                        <option value="sw">Swahili</option>
                         <option value="es">Español</option>
                         <option value="fr">Français</option>
                         <option value="de">Deutsch</option>
-                        <option value="ja">日本語</option>
                     </select>
                 </div>
             </div>
@@ -54,8 +54,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Exchange Skills. Learn Freely. Connect Globally.</h1>
-            <p>Join our community of 50,000+ users across 100+ countries</p>
+            <h1 data-i18n="hero-title">Exchange Skills. Learn Freely. Connect Globally.</h1>
+            <p data-i18n="hero-subtitle">Join our community of 50,000+ users across 100+ countries</p>
             <div class="flags-scroll">
                 <span title="United States">🇺🇸</span>
                 <span title="United Kingdom">🇬🇧</span>
@@ -68,30 +68,30 @@
                 <span title="Kenya">🇰🇪</span>
                 <span title="South Africa">🇿🇦</span>
             </div>
-            <a href="#signup" class="cta-button pulse">Get Started</a>
+            <a href="#signup" class="cta-button pulse" data-i18n="cta-button">Get Started</a>
         </div>
     </section>
 
     <!-- How It Works Section -->
     <section id="how-it-works">
-        <h2>How It Works</h2>
+        <h2 data-i18n="how-it-works">How It Works</h2>
         <div class="steps-container">
             <div class="step animated-step">
                 <div class="step-icon pulse"><i class="fas fa-user-edit"></i></div>
-                <h3>Create Your Skill Profile</h3>
-                <p>Showcase what you can teach and what you want to learn</p>
+                <h3 data-i18n="create-profile">Create Your Skill Profile</h3>
+                <p data-i18n="create-profile-desc">Showcase what you can teach and what you want to learn</p>
             </div>
             <div class="connector"><i class="fas fa-arrow-right"></i></div>
             <div class="step animated-step">
                 <div class="step-icon pulse"><i class="fas fa-globe-americas"></i></div>
-                <h3>Match With Global Learners</h3>
-                <p>Our AI connects you with perfect partners worldwide</p>
+                <h3 data-i18n="match-learners">Match With Global Learners</h3>
+                <p data-i18n="match-learners-desc">Our AI connects you with perfect partners worldwide</p>
             </div>
             <div class="connector"><i class="fas fa-arrow-right"></i></div>
             <div class="step animated-step">
                 <div class="step-icon pulse"><i class="fas fa-video"></i></div>
-                <h3>Exchange Lessons Live</h3>
-                <p>Teach and learn through our integrated video platform</p>
+                <h3 data-i18n="exchange-lessons">Exchange Lessons Live</h3>
+                <p data-i18n="exchange-lessons-desc">Teach and learn through our integrated video platform</p>
             </div>
         </div>
     </section>
@@ -108,12 +108,12 @@
             <div class="clock" data-timezone="Africa/Nairobi"><i class="fas fa-clock"></i> NBO: <span
                     class="time"></span></div>
         </div>
-        <p>Our platform automatically adjusts for timezone differences when scheduling sessions</p>
+        <p data-i18n="global-banner">Our platform automatically adjusts for timezone differences when scheduling sessions</p>
     </div>
 
     <!-- Features Section -->
     <section id="features">
-        <h2>Platform Features</h2>
+        <h2 data-i18n="features-title">Platform Features</h2>
         <div class="features-grid">
             <div class="feature-card hover-grow">
                 <div class="feature-icon"><i class="fas fa-robot"></i></div>
@@ -150,13 +150,13 @@
 
     <!-- Browse Skills Section -->
     <section id="browse-skills">
-        <h2>Browse Popular Skills</h2>
+        <h2 data-i18n="browse-title">Browse Popular Skills</h2>
         <div class="category-filter">
-            <button class="filter-btn active" data-category="all">All Categories</button>
-            <button class="filter-btn" data-category="tech">Technology</button>
-            <button class="filter-btn" data-category="language">Languages</button>
+            <button class="filter-btn active" data-category="all" data-i18n="all">All Categories</button>
+            <button class="filter-btn" data-category="tech" data-i18n="tech">Technology</button>
+            <button class="filter-btn" data-category="language" data-i18n="languages">Languages</button>
             <button class="filter-btn" data-category="creative">Creative Arts</button>
-            <button class="filter-btn" data-category="business">Business</button>
+            <button class="filter-btn" data-category="business" data-i18n="business">Business</button>
         </div>
 
         <!-- Add Level Filter Buttons Here -->
@@ -276,7 +276,7 @@
 
     <!-- Testimonials Section -->
     <section class="testimonials">
-        <h2>What Our Global Community Says</h2>
+        <h2 data-i18n="testimonials">What Our Global Community Says</h2>
         <div class="testimonial-carousel">
             <div class="testimonial">
                 <div class="testimonial-content">
@@ -420,15 +420,7 @@
                     <li><a href="#login">Login</a></li>
                 </ul>
             </div>
-            <div class="footer-section">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Community Guidelines</a></li>
-                    <li><a href="#">Safety Tips</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
-            </div>
+            
         </div>
         <div class="footer-bottom">
             <p>&copy; 2025 SkillSwap. All rights reserved.</p>
