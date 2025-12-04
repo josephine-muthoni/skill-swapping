@@ -5,22 +5,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuLinks = document.querySelectorAll('.menu a');
 
     // ==========================
-    // Hamburger / Mobile Menu
     // ==========================
-    if (hamburger && menu) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            menu.classList.toggle('active');
-        });
+// Hamburger Menu - Improved
+// ==========================
+if (hamburger && menu) {
+    hamburger.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent event bubbling
+        hamburger.classList.toggle('active');
+        menu.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+    });
 
-        // Close when clicking a menu link (and smooth scroll handled below)
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                menu.classList.remove('active');
-            });
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (menu.classList.contains('active') && 
+            !menu.contains(e.target) && 
+            !hamburger.contains(e.target)) {
+            hamburger.classList.remove('active');
+            menu.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+    });
+
+    // Close menu when clicking a link
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            menu.classList.remove('active');
+            document.body.classList.remove('menu-open');
         });
-    }
+    });
+}
 
     // ==========================
     // Smooth scrolling for anchor links
